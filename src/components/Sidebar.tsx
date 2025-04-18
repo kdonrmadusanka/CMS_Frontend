@@ -11,7 +11,12 @@ interface MenuItem {
     path: string;
 }
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+    open: boolean;
+    setOpen: (val: boolean) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ open, setOpen }) => {
     const navigate = useNavigate();
 
     const menuItem: MenuItem[] = [
@@ -22,7 +27,9 @@ const Sidebar: React.FC = () => {
 
     return (
         <Drawer
-            variant="permanent"
+            variant="temporary"
+            open= { open }
+            onClose={ () => setOpen(false) }
             sx={{
                 width: drawerWidth,
                 flexShrink: 0,

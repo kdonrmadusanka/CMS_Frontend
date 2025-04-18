@@ -2,8 +2,13 @@ import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
-const NavBar = () => {
+interface NavBarProps {
+  toggleSidebar: () => void;
+}
+
+const NavBar: React.FC<NavBarProps> = ({ toggleSidebar }) => {
   const navigate = useNavigate();
   return (
     <AppBar
@@ -14,7 +19,7 @@ const NavBar = () => {
       transition={{ duration: 1.5 }}
     >
         <Toolbar>
-            <IconButton edge='start' color='inherit' aria-label='menu' sx={{ mr:2 }}>
+            <IconButton edge='start' color='inherit' aria-label='menu' sx={{ mr:2 }} onClick={toggleSidebar}>
                 <MenuIcon />
             </IconButton>
             <Typography variant='h6' sx={{ flexGrow: 1 }}>
